@@ -57,8 +57,11 @@ def weakLearn(learn_conf,output="./output/weakLearn/"):
     dbn.add(dense)
     dbn.add(classifier)
 
+    t1 = datetime.datetime.now()
     dbn.fit(dataset.train_data,dataset.train_label)
+    t2 = datetime.datetime.now()
 
+    learn_conf["exe_time"] = t2-t1
     learn_conf["DBN"] = dbn
 
     with open(output+learn_conf["name"], mode="wb") as f:
